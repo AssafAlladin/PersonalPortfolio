@@ -30,7 +30,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 5vw;
     background-color: #000;
     position: fixed;
     top: 0;
@@ -95,7 +95,8 @@ header nav ul {
     display: flex;
     gap: 10px;
 }
-header nav li {
+header nav li.active {
+    background-color: var(--primary-clr);
 }
 header nav ul li .different {
     color: var(--block-clr);
@@ -103,32 +104,26 @@ header nav ul li .different {
 header nav ul li a {
     text-decoration: none;
     color: #fff;
-    padding: 3px 10px;
+    padding: 20px 10px;
     position: relative;
 }
-nav ul li a::after{
+
+nav ul li a#resume-link::after{
     content: '';
     background-color: #fff;
     height: 2px;
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform: scale(0, 1);
-    transform-origin: left;
-
-    transition: transform 100ms ease-in;
-}
-nav li a:hover::after {
-    transform: scale(1, 1);
+    left: 6px;
+    right: 6px;
+    bottom: 5px;
 }
 main.container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20px;
-    row-gap: 80px;
+    row-gap: 150px;
     width: 90%;
-    margin: 120px auto 100px auto;
+    margin: 120px auto 220px auto;
 }
 section {
     grid-column: 1 / 4;
@@ -139,6 +134,7 @@ section {
     background-size: cover;
     width: 100%;
     height: calc(100vh - 180px);
+    max-height: 800px;
     display: flex;
     align-items: center;
     justify-content: center;    
@@ -149,7 +145,7 @@ section {
 .banner h1 {
     color: transparent;
     font-size: 5.5rem;
-    letter-spacing: 1.3rem;
+    letter-spacing: 1.1rem;
     -webkit-text-stroke-width: 4px;
     -webkit-text-stroke-color: white;
     animation: move 550ms cubic-bezier(0.93, 0.3, 0.13, 1.21);
@@ -172,6 +168,11 @@ section {
 .card {
     background-color: var(--block-clr);
     opacity: 0;
+    min-height: 230px;
+    display: flex;
+    /* flex-direction: column; */
+
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
 
     transition: opacity 250ms ease-in, transform 150ms ease-in;
 }
@@ -187,7 +188,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 30px;
+    gap: 20px;
 }
 .card-body .card-top {
     background-color: var(--primary-clr);
@@ -282,16 +283,6 @@ section {
     position: relative;
 }
 
-/* .resume::after {
-    content: '';
-    height: 30px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), #fff);
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-} */
-
 .resume-section {
     font-family: Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -321,15 +312,16 @@ section {
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
-    gap: 30px;
+    column-gap: 30px;
+    row-gap: 50px;
     min-height: calc(100vh - 180px);
     position: relative;
     overflow: hidden;
 }
 
 .about-me .img {
-    flex: 0 0 350px;
-    background-image: url(./images/IMG_4431.JPG);
+    flex: 1 1 350px;
+    background-image: url(./images/grad.JPG);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -337,7 +329,7 @@ section {
     transform: translateX(-40%);
     opacity: 0;
 
-    transition: transform 250ms ease-in, opacity 150ms ease-in;
+    transition: transform 250ms ease-in, opacity 250ms ease-in;
 }
 
 .about-me .img.slide {
@@ -346,15 +338,34 @@ section {
 }
 
 .about-me .my-info {
-    flex: 0 0 35ch;
+    flex: 1 1 35ch;
     font-size: 1.3rem;
     color: white;
     margin-right: 90px;
     transform: translateX(80%);
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 
-    transition: transform 150ms ease-in, opacity 250ms ease-in;
+    transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
 
+}
+
+.my-info a {
+    text-decoration: none;
+    color: black;
+    padding: .5rem 1.8rem;
+    background-color: var(--block-clr);
+    width: max-content;
+    font-size: 1.1rem;
+}
+
+.my-info a::after {
+    content: '\f0e1';
+    font-family: FontAwesome;
+    color: #0A66C2;
+    margin-left: 2px;
 }
 
 .about-me .my-info.slide {
@@ -363,18 +374,10 @@ section {
 }
 /* Start of Design styling */
 
-.slider-container {
-    grid-column: 1 / 4;
-    display: flex;
-}
-
-.info-container {
-    color: white;
-}
 
 footer {
-    background-color: black;
-    color: #fff;
+    background-color: var(--block-clr);
+    color: #000;
     margin-top: auto;
     padding: 10px;
 }
@@ -386,7 +389,7 @@ footer {
     font-size: .8rem;
 }
 
-@media (min-width: 2000px) {
+@media (min-width: 1800px) {
     html {
         font-size: 1.5em;
     }
@@ -399,6 +402,22 @@ footer {
 @media (max-width: 1024px) {
     .cards {
         justify-content: center;
+        gap: 50px;
+    }
+    .cards a {
+        flex: 1 1 100%;
+        max-width: 700px;
+    }
+    .card {
+        display: block;
+        min-height: auto;
+        -webkit-box-reflect: unset;
+        flex-direction: column;
+        min-height: auto;
+    }
+    .card-body{
+        gap: 50px;
+        font-size: 1.2rem;
     }
     .resume {
         width: 80%;
@@ -412,7 +431,7 @@ footer {
         font-size: .8rem;
     }
     main.container {
-        width: 95%;
+        width: 90%;
     }
     .cards {
         justify-content: center;
@@ -425,7 +444,7 @@ footer {
 
 @media (max-width: 540px) {
     html {
-        font-size: .8rem;
+        font-size: 1em;
     }
     header nav {
         position: absolute;
@@ -475,9 +494,6 @@ footer {
         right: 5%;
         transform: translate(-5%, -3%);
     }
-    .cards a {
-        flex: 1 1 calc(25rem - 30px);
-    }
     .cards {
         display: flex;
         flex-flow: row wrap;
@@ -490,6 +506,7 @@ footer {
     } 
     .card-body {
         min-height: 0;
+        gap: 20px;
     }
     .resume {
         width: 78%;

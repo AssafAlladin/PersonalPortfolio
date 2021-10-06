@@ -33,8 +33,8 @@ cards.forEach(card => {
 })
 
 const slideOptions = {
-    threshold: .5,
-    rootMargin: "0px 0px 0px 0px"
+    threshold: 0,
+    rootMargin: "0px 0px -100px 0px"
 }
 
 const sliderObserver = new IntersectionObserver(function(entries, sliderObserver) {
@@ -62,7 +62,9 @@ toggle.addEventListener("click", () => {
 })
 
 
-resumeCard.addEventListener("click", openResume)
+if (!window.location.href.includes("portfolio.html")) {
+    resumeCard.addEventListener("click", openResume)
+}
 resumeLink.addEventListener("click", openResume)
 
 
@@ -89,3 +91,12 @@ exitBtn.addEventListener("click", (e) => {
 //         prevEl: ".swiper-button-prev",
 //     },
 // });
+
+
+const navList = document.querySelectorAll("nav ul li a")
+
+navList.forEach(nav => {
+    if (window.location.href == nav.href) {
+        nav.parentElement.classList.add("active")
+    }
+})
