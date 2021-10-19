@@ -81,17 +81,6 @@ exitBtn.addEventListener("click", (e) => {
     document.body.style.overflowY = "scroll"
 })
 
-// var swiper = new Swiper(".mySwiper", {
-//     pagination: {
-//         el: ".swiper-pagination",
-//         type: "progressbar",
-//     },
-//     navigation: {
-//         nextEl: ".swiper-button-next",
-//         prevEl: ".swiper-button-prev",
-//     },
-// });
-
 
 const navList = document.querySelectorAll("nav ul li a")
 
@@ -100,3 +89,8 @@ navList.forEach(nav => {
         nav.parentElement.classList.add("active")
     }
 })
+
+const loadingSection = document.querySelector("section.loading")
+const slideUp = document.querySelector(".slide-up")
+const slideDown = document.querySelector(".slide-down")
+const loadingCounter = document.querySelector(".loading-text")
