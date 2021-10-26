@@ -382,7 +382,7 @@ section {
 
 
 footer {
-    background-color: var(--block-clr);
+    background-color: var(--primary-clr);
     color: #000;
     margin-top: auto;
     padding: 10px;
