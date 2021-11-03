@@ -8,6 +8,21 @@ const exitBtn = document.querySelector('.resume-container .exit');
 const cardSection = document.querySelector(".cards");
 const cards = document.querySelectorAll("section.cards .card");
 const slideDivs = document.querySelectorAll(".about-me div")
+const scrollBarContainer = document.getElementById("scroll-bar-container")
+const scrollBar = document.getElementById("scroll-bar")
+
+
+const heightCalc = document.body.scrollHeight - window.innerHeight
+
+
+
+
+window.onscroll = () => {
+    const progression = (window.scrollY / heightCalc) * 100
+
+    scrollBar.style.width = `${progression}%`
+
+}
 
 
 const cardOptions = {
